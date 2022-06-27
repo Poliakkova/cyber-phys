@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Перша лаба</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="header :: header"></header>
+
+<div class="container mt-5">
+    <h2 style="text-align: center;">Формування бази даних з набору даних про метеорологічні умови регіону </h2>
+
+    <form action="/process-data" enctype="multipart/form-data" method="post" style="width: fit-content; " class="mt-5 mx-auto">
+        <div class="form-group">
+            <div><label for="file1">Введіть повний шлях файлу для обробки даних у форматі Excel .xlsx</label></div>
+            <input required name="file1" type="text" class="form-control mt-2" id="file1">
+            <small class="form-text text-muted">Наприклад: D:/Учеба/Кибер-физ системы/кривий ріг/2012-1.xlsx</small>
+            <div><button type="submit" class="btn btn-primary mt-3 mx-auto d-block">Редагувати</button></div>
+        </div>
+    </form>
+
+    <form action="/load-data" enctype="multipart/form-data" method="post" style="width: fit-content; margin: auto;" class="mt-5">
+        <div class="form-group">
+            <div><label for="file2">Введіть повний шлях файлу для формування бази даних у форматі Excel .xlsx</label></div>
+            <input required name="file2" type="text" class="form-control mt-2" id="file2">
+            <small class="form-text text-muted">Наприклад: D:/Учеба/Кибер-физ системы/кривий ріг/2012-1.xlsx</small>
+
+            <label for="region" class="d-block">Введіть назву регіону</label>
+            <input required name="region" id="region" type="text" max="45" class="form-control mt-2"/>
+
+            <label for="year" class="d-block">Введіть рік</label>
+            <input required name="year" id="year" type="number" min="1900" max="2099" step="1" value="2012" class="form-control mt-2"/>
+
+            <label for="month">Оберіть місяць</label>
+            <select required name="month" id="month" class="form-select" aria-label="Default select example">
+                <option value="1">Січень</option>
+                <option value="2">Лютий</option>
+                <option value="3">Березень</option>
+                <option value="4">Квітень</option>
+                <option value="5">Травень</option>
+                <option value="6">Червень</option>
+                <option value="7">Липень</option>
+                <option value="8">Серпень</option>
+                <option value="9">Вересень</option>
+                <option value="10">Жовтень</option>
+                <option value="11">Листопад</option>
+                <option value="12">Грудень</option>
+            </select>
+            <div><button type="submit" class="btn btn-primary mt-3 mx-auto d-block">Завантажити до бази даних</button></div>
+        </div>
+    </form>
+</div>
+
+<div th:insert="footer :: footer"></div>
+</body>
+</html>
